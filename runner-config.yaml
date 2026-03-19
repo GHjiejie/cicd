@@ -1,0 +1,2 @@
+container:
+  network: "my_gitea_net"  # 👈 告诉临时容器加入这个网络
