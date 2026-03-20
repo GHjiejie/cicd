@@ -65,9 +65,30 @@ services:
     container_name: docker_registry
     restart: always
     ports:
-      - "5050:5000" # 映射到宿主机的 5000 端口
+      - "5050:5000"
+    environment:
+      REGISTRY_STORAGE_DELETE_ENABLED: "true"
+      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Origin: "['*']"
+      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Methods: "['HEAD', 'GET', 'OPTIONS', 'DELETE']"
+      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Headers: "['Authorization', 'Accept', 'Cache-Control']"
+      REGISTRY_HTTP_HEADERS_Access-Control-Expose-Headers: "['Docker-Content-Digest']"
     volumes:
-      - ./registry-data:/var/lib/registry # 镜像实际保存在你本地的这个文件夹里
+      - ./registry-data:/var/lib/registry 
+    networks:
+      - cicd_net
+    
+  registry-ui:
+    image: joxit/docker-registry-ui:main
+    container_name: registry_ui
+    restart: always
+    ports:
+      - "9000:80"  
+    environment:
+      - REGISTRY_TITLE=My Gitea Registry 
+      - REGISTRY_URL=http://localhost:5050  #镜像仓库的地址，需要注意，不要去内网里面去找
+      - DELETE_IMAGES=true 
+    depends_on:
+      - registry
     networks:
       - cicd_net
 
