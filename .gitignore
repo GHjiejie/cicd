@@ -1,0 +1,34 @@
+# macOS
+.DS_Store
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Docker runtime / mounted data (do not commit)
+gitea/
+gitea_data/
+mysql/
+jenkins_data/
+runner-data/
+
+# Secrets / keys
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# Backup/temp files
+*.bak
+*.tmp
+*.swp
