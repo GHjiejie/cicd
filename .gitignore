@@ -20,6 +20,7 @@ gitea_data/
 mysql/
 jenkins_data/
 runner-data/
+registry-data/
 
 # Secrets / keys
 *.pem

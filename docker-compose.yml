@@ -59,4 +59,16 @@ services:
       - cicd_net
     restart: always
 
+
+  registry:
+    image: registry:3.0.0
+    container_name: docker_registry
+    restart: always
+    ports:
+      - "5050:5000" # 映射到宿主机的 5000 端口
+    volumes:
+      - ./registry-data:/var/lib/registry # 镜像实际保存在你本地的这个文件夹里
+    networks:
+      - cicd_net
+
   
