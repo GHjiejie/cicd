@@ -59,16 +59,4 @@ services:
       - cicd_net
     restart: always
 
-  # jenkins:
-  #   image: jenkins/jenkins:lts
-  #   container_name: jenkins
-  #   user: root # 关键权限：必须为 root，才能调用宿主机的 Docker 打镜像
-  #   ports:
-  #     - "8088:8080"
-  #     - "50000:50000"
-  #   volumes:
-  #     - ./jenkins_data:/var/jenkins_home
-  #     - /var/run/docker.sock:/var/run/docker.sock # 关键步骤：打通宿主机 Docker
-  #   networks:
-  #     - cicd_net
-  #   restart: always
+  
